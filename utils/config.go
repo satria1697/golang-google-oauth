@@ -1,6 +1,9 @@
 package utils
 
-import "github.com/ilyakaznacheev/cleanenv"
+import (
+	"github.com/joho/godotenv"
+	"os"
+)
 
 type Config struct {
 	ClientID     string `env:"CLIENT_ID"`
@@ -9,8 +12,12 @@ type Config struct {
 	Port         string `env:"PORT"`
 }
 
-func InitConfig() Config {
-	var cfg Config
-	cleanenv.ReadConfig(".env", &cfg)
-	return cfg
+func InitConfig() *Config {
+	godotenv.Read()
+	return &Config{
+		ClientID:     os.Getenv("CLIENT_ID"),
+		ClientSecret: os.Getenv("CLIENT_SECRET"),
+		RedirectUri:  os.Getenv("REDIRECT_URI"),
+		Port:         os.Getenv("PORT"),
+	}
 }

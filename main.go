@@ -20,7 +20,7 @@ func main() {
 	})
 
 	oauthRouter := oauth.NewOauthRouter(r)
-	config := utils.InitConfig()
+	config := *utils.InitConfig()
 	oauthConfig := oauthutils.InitConfig(config)
 	client := &http.Client{}
 	oauthRepository := repository.NewOauthRepository(oauthConfig, client)
