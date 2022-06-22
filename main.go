@@ -13,6 +13,11 @@ import (
 
 func main() {
 	r := gin.Default()
+
+	r.GET("/health-check", func(context *gin.Context) {
+		context.JSON(http.StatusOK, utils.SuccessResponse("ok"))
+	})
+
 	oauthRouter := oauth.NewOauthRouter(r)
 	config := utils.InitConfig()
 	oauthConfig := oauthutils.InitConfig(config)
