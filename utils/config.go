@@ -6,6 +6,7 @@ type Config struct {
 	ClientID     string `env:"CLIENT_ID"`
 	ClientSecret string `env:"CLIENT_SECRET"`
 	RedirectUri  string `env:"REDIRECT_URI"`
+	Port         string `env:"PORT"`
 }
 
 func InitConfig() Config {

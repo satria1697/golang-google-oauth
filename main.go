@@ -7,6 +7,7 @@ import (
 	"five/oauth/v1/repository"
 	"five/oauth/v1/usecase"
 	"five/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -25,5 +26,5 @@ func main() {
 	oauthRepository := repository.NewOauthRepository(oauthConfig, client)
 	oauthUseCase := usecase.NewOauthUseCase(oauthRepository)
 	oauthhandler.NewOauthHandler(oauthRouter, oauthUseCase)
-	r.Run(":7004")
+	r.Run(fmt.Sprintf(":%s", config.Port))
 }
